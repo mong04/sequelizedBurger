@@ -1,0 +1,55 @@
+<div class="jumbotron text-center" style="background-color:burlywood">
+    <img src="https://openclipart.org/image/2400px/svg_to_png/196148/hamburger.png" style="max-width: 25%">
+    <h1 class="display-3">Eat Your Burgers!</h1>
+    <hr class="my-2">
+    <p class="lead">
+    <br>
+    <div class="row">
+      <div class="col-sm-6">
+        <h4>Available Burgers</h4>
+        <hr>
+        {{#each burgers}}
+          {{#unless this.devoured}}
+            <div class="card card-block">
+              <div class="container">
+                <div class="row">
+                  <div class="col-sm-10"><h5>{{inc @index}}. {{this.burger_name}}</h5></div>
+                  <div class="col-sm-2">
+                    <form action="/{{this.id}}?_method=PUT" method="POST">
+                      <input type="hidden" name="devoured" value="true">
+                      <button type="submit">EAT IT!</button>
+                    </form>
+                  </div>
+                </div>
+              </div>                
+            </div>
+            <br>
+          {{/unless}}
+        {{/each}}
+      </div>
+      <div class="col-sm-6">
+        <h4>Burgers Already Eaten</h4>
+        <hr>
+        {{#each burgers}}
+          {{#if this.devoured}}
+            <div class="card card-block">
+              <h3 style="color:darkgrey">{{inc @index}}. {{this.burger_name}}</h3>
+            </div>
+            <br>
+          {{/if}}
+        {{/each}}
+      </div>
+    </div>  
+        <form class="create-update-form" action="/" method="POST">
+          <div class="form-group">
+            <p>
+              Enter a burger you want to eat then click "Submit"
+            </p>
+            <textarea class="form-control" name="burger_name" id="burger_name" rows="3"></textarea>
+            <br>            
+            <button type="submit" class="btn btn-secondary">Submit</button>
+          </div>
+        </form>        
+    </p>
+</div>
+
