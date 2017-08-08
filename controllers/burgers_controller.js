@@ -7,7 +7,7 @@ router.get("/", function (req, res) {
     .then(function(data) {
         var hbsObject = { burgers: data};
         res.render('index', hbsObject);
-    })
+    });
 });
 
 router.post("/", function (req, res) {
